@@ -127,10 +127,10 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      colorMode: {
+        defaultMode: "dark",
+      },
     }),
-  colorMode: {
-    defaultMode: "dark",
-  },
 };
 
 module.exports = config;
