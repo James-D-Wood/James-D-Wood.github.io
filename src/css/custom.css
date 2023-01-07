@@ -21,6 +21,7 @@
 [data-theme='dark'] {
   --ifm-background-color: #202347 !important;
   --ifm-background-surface-color: #373c7a !important;
+  --ifm-navbar-link-color: #fff;
   --ifm-color-primary: #bcc0fb;
   --ifm-color-primary-dark: #9399f9;
   --ifm-color-primary-darker: #7e86f7;
@@ -30,4 +31,8 @@
   --ifm-color-primary-lightest: #ffffff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   
+}
+
+.navbar__brand {
+  margin-right: 0px;
 }
