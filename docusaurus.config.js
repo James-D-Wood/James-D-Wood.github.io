@@ -1,14 +1,14 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const lightCodeTheme = require("./src/themes/wisteria");
+const darkCodeTheme = require("./src/themes/wisteria");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "James' Tech Notes",
   tagline: "This site is under test",
-  url: "https://james-d-wood.github.io/",
+  url: "https://notebook.james.codes/",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -89,6 +89,7 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
       prism: {
+        additionalLanguages: ["swift"],
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
