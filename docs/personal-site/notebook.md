@@ -1,8 +1,8 @@
-# Setting Up the Site
+# Development Notebook
 
-**Status:** Draft
+## December 13, 2021
 
-## Balling on a Budget
+### Setting up the Site
 
 About a year ago I decided it was time to get my name out there for mostly me, my parents, and anyone clicking through my resume to see. This would involve publishing a personal website that would allow me to showcase myself as a developer through a simple blog and links to side projects. I could pretty simply be accomplished by a static site generator, a nice template and a monthly subscription to a managed hosting service - but what fun would that be? So I decided to set out some constraints for myself. This project needed to meet the following constraints:
 
@@ -13,7 +13,7 @@ About a year ago I decided it was time to get my name out there for mostly me, m
 
 So like any good developer I bought a domain name, rented an EC2 instance, got the front end running and then proceeded to domain squat for 6 months. I'm finally getting around to launching the back end for this site and I'm finding that my lack of a CICD pipeline or even documentation is biting me in the behind. The following retraces my steps so that I can look back on this and hopefully learn, and so that others may possibly get a laugh.
 
-## System Outline
+### System Outline
 
 To help with visualizing the walkthrough here is a basic diagram of the app at the beginning and at end of this article.During this walkthrough I will update the React client to no longer use hash routing, add a backend service run by systemd to serve as my API, install a PostgreSQL database and configure traffic through the Apache server I am already running.
 
@@ -67,8 +67,6 @@ To help with visualizing the walkthrough here is a basic diagram of the app at t
      ------------------------------------------------------------------------
 
 ```
-
-## The Walkthrough
 
 ### Front End (React Client)
 
@@ -184,7 +182,7 @@ This reveals two problems:
 1. Postgres needs to be installed on this instance and
 2. The app needs to be configured to read for environment vars instead of the hardcoded variables I used in development.
 
-#### Installing Postgres
+### Installing Postgres
 
 - Install (not completely clear how I did this)
 - Create user for application
@@ -199,14 +197,14 @@ This reveals two problems:
 - [amazon specific instructions](https://techviewleo.com/install-postgresql-13-on-amazon-linux/)
 - [pg_hba.conf](https://www.postgresql.org/docs/9.1/auth-pg-hba-conf.html)
 
-#### Configuring App for Env
+### Configuring App for Env
 
 The next step is to
 
 - API Token
 - Postgres Creds
 
-#### Configuring Apache for ReverseProxy
+### Configuring Apache for ReverseProxy
 
 In order to get requests to my Go app which is running locally on port 8080, I'll need to pipe requests through the standard ports 80 (HTTP) and 443 (HTTPS) as these are the only ports I've exposed to the world using my Security Group. I am already serving my client on this server however, so I'll need to reconfigure Apache a bit.
 
@@ -300,7 +298,7 @@ Now when I send a request the resource is automatically redirected.
 - [Apache Docs: Rewrites](https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html#rewritecond)
 - [Stack Overflow Response for Rewrites](https://stackoverflow.com/a/48872476)
 
-#### Setting Up Go Server as a Systemd Service
+### Setting Up Go Server as a Systemd Service
 
 On Linux systems running Systemd, the `/etc/systemd/system/` directory contains custom "unit files" that the system admin can manage to create daemons that can be run in the background. I am going to create such a service for our Go App.
 
@@ -333,7 +331,7 @@ And we're off!
 - [RedHat Docs: systemd Unit Files](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/chap-managing_services_with_systemd#sect-Managing_Services_with_systemd-Unit_Files)
 - [Practical Example by Copperwall](https://www.copperwall.dev/2016-08-04-use-services-for-your-web-apps)
 
-## Reflection
+### Reflection
 
 After this exercise I now have
 
