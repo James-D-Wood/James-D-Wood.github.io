@@ -1,5 +1,52 @@
 # Development Notebook
 
+## May 4, 2024
+
+### Creating the /meta endpoint
+
+Today I wanted to set up an endpoint to share service metadata such as commit
+SHA and build time to help serve as a reminder to me when I last was working
+on this project and what version of the code I had last deployed. I often go
+long stretches between working on my personal projects depending on how busy
+life gets and having this as quick reference helps me dive back in where I
+left off.
+
+The learning from this was how to use `go generate` in my build steps to
+generate txt files with the metadata I wanted to include and use `go embed`
+to tie these values to variables at runtime. The relevant code looks like
+this:
+
+```go
+//go:generate sh -c "printf %s $(git rev-parse HEAD) > .build/commit.txt"
+//go:generate sh -c "date -u -I seconds | tr -d '[:space:]' > .build/build-time.txt"
+var (
+	//go:embed .build/commit.txt
+	Commit string
+	//go:embed .build/build-time.txt
+	BuildTime string
+)
+
+type MetaResponse struct {
+	CommitSHA string `json:"sha"`
+	BuildTime string `json:"build_time"`
+	GitHubURL string `json:"github_url"`
+}
+
+func metaHandler(w http.ResponseWriter, r *http.Request) {
+	b, _ := json.Marshal(MetaResponse{
+        Commit,
+        BuildTime,
+        "https://github.com/James-D-Wood/personal-site-go-server",
+    })
+	w.Header().Add("Content-Type", "application/json")
+	w.Write(b)
+}
+```
+
+And here is what I see when I ping the new endpoint:
+
+![/meta endpoint repsonse](./assets/meta.png)
+
 ## December 13, 2021
 
 ### Setting up the Site
