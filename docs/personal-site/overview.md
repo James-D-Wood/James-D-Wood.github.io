@@ -6,6 +6,8 @@ sidebar_position: 1
 
 ## notebook.james.codes
 
+**Repo:** https://github.com/James-D-Wood/James-D-Wood.github.io
+
 This project is meant to be low friction, low cost and high productivity.
 I find that being able to write about my learning and document my work is the best
 way to keep myself engaged in daily coding.
@@ -20,6 +22,9 @@ road, docusaurus supports React for standalone pages. This seemed to be the best
 all worlds to me.
 
 ## jameswood.dev
+
+**Frontend Repo:** https://github.com/James-D-Wood/personal-site-react-ui  
+**Backend Repo:** https://github.com/James-D-Wood/personal-site-go-server
 
 This is my original personal site project. I used it to learn more about AWS and
 showcase a bit of knowledge across the stack. As I start looking toward creating
