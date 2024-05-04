@@ -9,7 +9,7 @@ sidebar_position: 4
 ![JSON Formatter Chrome Extension](./assets/json_format_chrome_extension.png)
 
 This project was to make a clone of Callum Locke's popular
-[JSON Formatter](github.com/callumlocke/json-formatter) web extension and put
+[JSON Formatter](https://github.com/callumlocke/json-formatter) web extension and put
 my own spin on it by adding a font selector feature.
 
 The goal of the project was to reproduce without looking at the source code in
