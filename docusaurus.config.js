@@ -6,7 +6,7 @@ const darkCodeTheme = require("./src/themes/wisteria");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "James.Codes",
+  title: "james.codes",
   tagline: "James' Software Development Notebook",
   url: "https://james.codes/",
   baseUrl: "/",
@@ -109,7 +109,7 @@ const config = {
       footer: {
         style: "dark",
         links: [],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Developed (🪲🐞🐛's and all) by james.`,
       },
       prism: {
         additionalLanguages: ["swift"],
@@ -118,6 +118,7 @@ const config = {
       },
       colorMode: {
         defaultMode: "dark",
+        disableSwitch: true,
       },
     }),
 };
