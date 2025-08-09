@@ -1,5 +1,226 @@
 # Development Notebook
 
+## August 9, 2025 
+
+### Uplift Docusaurus to V3
+
+Because I don't work day to day with the JS ecosystem, I find these major version uplifts to be a bit of a struggle because of the incompatibility between dependencies.
+
+I am going to document this uplift process so that I have something to reference in the future. 
+
+Before I get started, I am going to:
+- enumerate my notebooks plugins and dependencies
+- google some docs on how to perform the uplift
+- ask Claude Code for some advice on how to proceed
+
+#### Dependency Discovery
+
+To enumerate dependencies, I am checking my `package.json` and `docusaurus.config.js` files for hints of potential conflicts that this update will bring.
+
+```json title="package.json"
+{
+  "name": "my-website",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc"
+  },
+  // highlight-start
+  // theme-mermaid will likely need to be updated - this is how I am supporting diagrams
+  // prism-react-renderer is how I am theming my code blocks - this will need an uplift as well
+  // 
+  "dependencies": {
+    "@docusaurus/core": "2.2.0",
+    "@docusaurus/preset-classic": "2.2.0",
+    "@docusaurus/theme-mermaid": "^2.2.0",
+    "@mdx-js/react": "^1.6.22",
+    "clsx": "^1.2.1",
+    "prism-react-renderer": "^1.3.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  // the TS installation may need to be uplifted in this change
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "2.2.0",
+    "@tsconfig/docusaurus": "^1.0.5",
+    "typescript": "^4.7.4"
+  },
+  // highlight-end
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=16.14"
+  }
+}
+```
+
+```js title="docusaurus.config.js"
+// highlight-start
+// I'm using a custom theme here - 
+// I'll need to check that this is compatible with newer versions of the dependencies
+const lightCodeTheme = require("./src/themes/wisteria");
+const darkCodeTheme = require("./src/themes/wisteria");
+// highlight-end
+
+/** @type {import('@docusaurus/types').Config} */
+const config = {
+  title: "James' Tech Notes",
+  tagline: "This site is under test",
+  url: "https://notebook.james.codes/",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/favicon.ico",
+
+  // GitHub pages deployment config.
+  // If you aren't using GitHub pages, you don't need these.
+  organizationName: "James-D-Wood", // Usually your GitHub org/user name.
+  projectName: "James-D-Wood.github.io", // Usually your repo name.
+  trailingSlash: false,
+  deploymentBranch: "gh-pages",
+  // Even if you don't use internalization, you can use this field to set useful
+  // metadata like html lang. For example, if your site is Chinese, you may want
+  // to replace "en" with "zh-Hans".
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en"],
+  },
+
+  // highlight-start
+  // once again - I'll need to check for mermaid plug in compatibility
+  markdown: {
+    mermaid: true,
+  },
+  themes: ["@docusaurus/theme-mermaid"],
+  //highlight-end
+
+  presets: [
+    [
+      "classic",
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
+        docs: {
+          sidebarPath: require.resolve("./sidebars.js"),
+        },
+        blog: {
+          showReadingTime: true,
+          editUrl:
+            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+        },
+        // highlight-start
+        theme: {
+          customCss: require.resolve("./src/css/custom.css"),
+        },
+        // highlight-end
+      }),
+    ],
+  ],
+
+  themeConfig:
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    ({
+      navbar: {
+        logo: {
+          alt: "My Site Logo",
+          src: "img/jw.png",
+          href: "/docs/projects",
+        },
+        items: [
+          {
+            type: "doc",
+            docId: "projects",
+            position: "left",
+            label: "Projects",
+          },
+          {
+            href: "https://jameswood.dev/resume",
+            position: "right",
+            label: "Resume",
+          },
+          {
+            href: "https://github.com/James-D-Wood",
+            label: "GitHub",
+            position: "right",
+          },
+        ],
+      },
+      footer: {
+        style: "dark",
+        links: [],
+        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      },
+      // highlight-start
+      prism: {
+        additionalLanguages: ["swift"],
+        theme: lightCodeTheme,
+        darkTheme: darkCodeTheme,
+      },
+      // highlight-end
+      colorMode: {
+        defaultMode: "dark",
+      },
+    }),
+};
+
+module.exports = config;
+```
+
+Summary:
+- prism and a custom theme are being used to handle syntax highlighting in code blocks
+- mermaid is being supported via plugins for diagrams
+- a custom css sheet is being used
+- typescript is configured but is likely not widely used
+
+#### Helpful Docs
+
+- [Docusaurus Docs - Upgrading to Docusaurus v3](https://docusaurus.io/docs/migration/v3)
+    - [Upgrading Dependencies](https://docusaurus.io/docs/migration/v3#upgrading-dependencies)
+    - [Upgrade Node](https://docusaurus.io/docs/migration/v3#nodejs-v180)
+    - [Upgrade React](https://docusaurus.io/docs/migration/v3#react-v180)
+    - [Upgrade Prism](https://docusaurus.io/docs/migration/v3#prism-react-renderer-v20)
+    - [Upgrade Mermaid](https://docusaurus.io/docs/migration/v3#mermaid-v104)
+    - [Upgrade TypeScript](https://docusaurus.io/docs/migration/v3#typescript-v51)
+- [Docusaurus Docs - Upgrading Docusaurus](https://docusaurus.io/docs/migration)
+    - Use `npm run clear` to clean up artifacts and cached items
+    - Use `rm -rf node_modules yarn.lock package-lock.json` to clean up deps
+
+#### Executing the Update
+
+In reality, this update was painless. I believe there were some extensions in my notebook at work that made this upgrade process more difficult but at least this time around the process was quite easy.
+
+- `npm run clear`
+- `rm -rf node_modules yarn.lock package-lock.json`
+- Update `package.json` with dependencies as mentioned in the V3 uplift guide
+- Update `tsconfig.json` to extend the new dependency name
+- `npm install`
+
+Easy peasy.
+
+After that I bumped to the new minor version using
+
+```bash
+npm i @docusaurus/core@latest @docusaurus/preset-classic@latest @docusaurus/theme-mermaid@latest @docusaurus/module-type-aliases@latest @docusaurus/tsconfig@latest
+```
+
 ## May 4, 2024
 
 ### Creating the /meta endpoint
