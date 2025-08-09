@@ -39,6 +39,9 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          id: 'projects',
+          path: 'docs/projects',
+          routeBasePath: 'projects',
           sidebarPath: require.resolve("./sidebars.js"),
         },
         blog: {
@@ -55,6 +58,18 @@ const config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'work',
+        path: 'docs/work',
+        routeBasePath: 'work',
+        sidebarPath: require.resolve('./sidebars.js'),
+      },
+    ],
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -62,14 +77,22 @@ const config = {
         logo: {
           alt: "My Site Logo",
           src: "img/jw.png",
-          href: "/docs/projects",
+          href: "/projects",
         },
         items: [
           {
             type: "doc",
-            docId: "projects",
+            docId: "overview",
+            docsPluginId: "projects",
             position: "left",
             label: "Projects",
+          },
+          {
+            type: "doc",
+            docId: "overview",
+            docsPluginId: "work",
+            position: "left",
+            label: "Work",
           },
           {
             href: "https://jameswood.dev/resume",
