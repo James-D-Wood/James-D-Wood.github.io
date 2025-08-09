@@ -6,9 +6,9 @@ const darkCodeTheme = require("./src/themes/wisteria");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "James' Tech Notes",
-  tagline: "This site is under test",
-  url: "https://notebook.james.codes/",
+  title: "James.Codes",
+  tagline: "James' Software Development Notebook",
+  url: "https://james.codes/",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
