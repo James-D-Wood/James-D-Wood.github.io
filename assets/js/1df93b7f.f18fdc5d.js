@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjames_codes=self.webpackChunkjames_codes||[]).push([[4583],{6866:(e,s,r)=>{r.r(s),r.d(s,{default:()=>u});r(6540);var c=r(6347),t=r(4848);function u(){return(0,t.jsx)(c.rd,{to:"/projects/overview"})}}}]);
