@@ -6,7 +6,7 @@ const darkCodeTheme = require("./src/themes/wisteria");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "James.Codes",
+  title: "james.codes",
   tagline: "James' Software Development Notebook",
   url: "https://james.codes/",
   baseUrl: "/",
