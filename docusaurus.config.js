@@ -77,7 +77,7 @@ const config = {
         logo: {
           alt: "My Site Logo",
           src: "img/jw.png",
-          href: "/projects",
+          href: "/projects/overview",
         },
         items: [
           {
