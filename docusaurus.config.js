@@ -39,9 +39,9 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          id: 'projects',
-          path: 'docs/projects',
-          routeBasePath: 'projects',
+          id: "projects",
+          path: "docs/projects",
+          routeBasePath: "projects",
           sidebarPath: require.resolve("./sidebars.js"),
         },
         blog: {
@@ -60,12 +60,12 @@ const config = {
 
   plugins: [
     [
-      '@docusaurus/plugin-content-docs',
+      "@docusaurus/plugin-content-docs",
       {
-        id: 'work',
-        path: 'docs/work',
-        routeBasePath: 'work',
-        sidebarPath: require.resolve('./sidebars.js'),
+        id: "career",
+        path: "docs/career",
+        routeBasePath: "career",
+        sidebarPath: require.resolve("./sidebars.js"),
       },
     ],
   ],
@@ -90,9 +90,9 @@ const config = {
           {
             type: "doc",
             docId: "overview",
-            docsPluginId: "work",
+            docsPluginId: "career",
             position: "left",
-            label: "Work",
+            label: "@ Work",
           },
           {
             href: "https://jameswood.dev/resume",
