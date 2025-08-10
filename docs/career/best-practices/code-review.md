@@ -6,7 +6,7 @@ The following are my thoughts and runbook on how to do an effective code review.
 
 ### Role of the Reviewer
 
-A reviewer is there to help maintain the garden, but not stop others from planting. They may offer tips but should respect the autonomy in style of others and focus only on what may lead to damaging weeds or pests.
+The purpose of code review is to help maintain the garden, not stop others from planting. Reviewers may offer tips for optimal growth but should respect the autonomy in style of others. The power to put one's foot down should only be used when practices that will lead to damaging weeds or pests are observed.
 
 From Google's `'The Standard of Code Review'`
 
@@ -18,11 +18,11 @@ Giving feedback on style without a basis in functionality is often pedantic and 
 
 ### Review Should be Fast
 
-The longer it takes to get a review through, the more frustrated the contributor will be. On top of that, development work that stacks on top of a change that is wasted will ultimately need to be reworked.
+The longer it takes to get a review through, the more development work stacked on top of the change will ultimately need to be reworked. This is a bad experience for both contributor and reviewer.
 
 ### Changes Should be Small
 
-In order to facilitate fast and thorough review, change sets should be kept to a minimum to reduce feedback loops and cognitive load on a reviewer.
+In order to facilitate fast and thorough review, the size and scope of change sets should be kept to a minimum to reduce feedback loops and cognitive load on a reviewer.
 
 ### Discourse Should be Empathetic
 
@@ -89,7 +89,7 @@ I find that [conventional comments](https://conventionalcomments.org/) are a way
 - [ ] Find something to compliment in the change
 - [ ] Express genuine delight when it occurs
 
-## References
+## Helpful Reads
 
 ### General
 
