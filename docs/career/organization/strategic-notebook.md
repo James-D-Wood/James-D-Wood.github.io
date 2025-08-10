@@ -4,13 +4,13 @@ The purpose of the strategic notebook is to document the design, contracts and t
 
 ## What I record
 
-- **Standard Operating Procedures (SOPs) / Runbooks** - The processes I follow for performing different repeated tasks on the system I work on. This can be release, data migration, go live steps, etc.
-- **Roadmap** - Timelines for project, product or capability
 - **Requirements** - Functional and non-functional requirements
+- **Roadmap** - Timelines for project, product or capability
 - **Technical Specifications** - Detailed implementation plans and interfaces
-- **Deployment & Infrastructure Documentation** - Environment configs, CI/CD pipelines, database assets
 - **Data Design** - Logical and physical design for database assets
+- **Deployment & Infrastructure Documentation** - Environment configs, CI/CD pipelines, database assets
 - **Performance & Monitoring** - SLAs, SLOs, observability strategy
+- **Standard Operating Procedures (SOPs) / Runbooks** - The processes I follow for performing different repeated tasks on the system I work on. This can be release, data migration, go live steps, etc.
 
 ## Structure
 
@@ -40,9 +40,9 @@ strategic-notebook/
         └── monitoring/
 ```
 
-## Using a Phased Approach on a New Project or Product
+## How to Implement this Notebook with a New Project or Product
 
-Phase 1: Project Inception
+### Phase 1: Requirements Gathering and Discovery
 
 Start with Planning:
 
@@ -55,7 +55,7 @@ Essential Architecture:
 - architecture/system-design/ - Create C4 Context and Container diagrams
 - architecture/adrs/ - Document first major decisions (tech stack, patterns)
 
-Phase 2: Design Phase
+### Phase 2: Design Phase
 
 Technical Specifications:
 
@@ -69,7 +69,7 @@ Compliance Foundations:
 - compliance/security/ - Threat model and security requirements
 - compliance/performance/ - SLA targets and performance budgets
 
-Phase 3: Implementation
+### Phase 3: Implementation
 
 Operations Documentation:
 
@@ -82,7 +82,11 @@ Living Architecture:
 - Update architecture/adrs/ as decisions evolve
 - Refine architecture/system-design/ with Component and Code diagrams
 
-Phase 4: Production Readiness
+Testing and Benchmarking:
+
+- compliance/performance/ - Record benchmarks and performance testing results
+
+### Phase 4: Production Readiness
 
 Complete Operations:
 
