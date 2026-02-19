@@ -1,5 +1,6 @@
 {
   "label": "Infrastructure",
+  "position": 2,
   "link": {
     "type": "generated-index",
     "description": "Learnings for Infrastructure"
