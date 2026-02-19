@@ -68,6 +68,15 @@ const config = {
         sidebarPath: require.resolve("./sidebars.js"),
       },
     ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "learning",
+        path: "docs/learning",
+        routeBasePath: "learning",
+        sidebarPath: require.resolve("./sidebars.js"),
+      },
+    ],
   ],
 
   themeConfig:
@@ -93,6 +102,13 @@ const config = {
             docsPluginId: "career",
             position: "left",
             label: "@ Work",
+          },
+          {
+            type: "doc",
+            docId: "overview",
+            docsPluginId: "learning",
+            position: "left",
+            label: "Learning",
           },
           {
             href: "https://jameswood.dev/resume",
